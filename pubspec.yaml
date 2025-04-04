@@ -65,6 +65,10 @@ flutter:
     - assets/images/login.webp
     - assets/images/failed.webp
     - assets/images/profilepic.webp
+    - assets/heroslides/slide1.png
+    - assets/heroslides/slide2.png
+    - assets/heroslides/slide3.png
+    - assets/heroslides/slide4.png
     - assets/products/L1CBLACK.webp
     - assets/products/L1CBLUE.webp
     - assets/products/L1CPINK.webp
@@ -126,6 +130,23 @@ flutter:
     - family: Chewy
       fonts:
         - asset: assets\fonts\Chewy-Regular.ttf
+
+    - family: MontserratRegular
+      fonts:
+        - asset: assets\fonts\Montserrat-Regular.ttf
+
+    - family: MontserratMedium
+      fonts:
+        - asset: assets\fonts\Montserrat-Medium.ttf
+    
+    - family: MontserratSemibold
+      fonts:
+        - asset: assets\fonts\Montserrat-SemiBold.ttf
+    
+    - family: Montserrat
+      fonts:
+        - asset: assets\fonts\Montserrat-VariableFont_wght.ttf
+   
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
