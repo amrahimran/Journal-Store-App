@@ -65,7 +65,51 @@ flutter:
     - assets/images/login.webp
     - assets/images/failed.webp
     - assets/images/profilepic.webp
+    - assets/products/L1CBLACK.webp
+    - assets/products/L1CBLUE.webp
+    - assets/products/L1CPINK.webp
+    - assets/products/M1CBLACK.webp
+    - assets/products/M1CBLUE.webp
+    - assets/products/M1CPINK.webp
+    - assets/products/L2.webp
+    - assets/products/M2.webp
+    - assets/products/L3.webp
+    - assets/products/M3.webp
+    - assets/products/L4.webp
+    - assets/products/M4.webp
+    - assets/products/L5.webp
+    - assets/products/M5.webp
+    - assets/products/L6CBLACK.webp
+    - assets/products/L6CBLUE.webp
+    - assets/products/L6CGREEN.webp
+    - assets/products/L6CPINK.webp
+    - assets/products/M6CBLACK.webp
+    - assets/products/M6CBLUE.webp
+    - assets/products/M6CGREEN.webp
+    - assets/products/M6CPINK.webp
+    - assets/products/L7.webp
+    - assets/products/M7.webp
+    - assets/products/L8.webp
+    - assets/products/M8.webp
+    - assets/products/L9CBLACK.webp
+    - assets/products/L9CBLUE.webp
+    - assets/products/L9CGREEN.webp
+    - assets/products/L9CPINK.webp
+    - assets/products/M9CBLACK.webp
+    - assets/products/M9CBLUE.webp
+    - assets/products/M9CGREEN.webp
+    - assets/products/M9CPINK.webp
+    - assets/products/L10.webp
+    - assets/products/M10.webp
+    - assets/products/L11.webp
+    - assets/products/M11.webp
+    - assets/products/L12.webp
+    - assets/products/L13.webp
+    - assets/products/L14.webp
+    - assets/products/L15.webp
+    - assets/products/L16.webp
   #   - images/a_dot_ham.jpeg
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
