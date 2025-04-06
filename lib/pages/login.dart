@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_final_fields, unused_element, unused_import, non_constant_identifier_names, use_build_context_synchronously
+// ignore_for_file: avoid_print, prefer_final_fields, unused_element, unused_import, non_constant_identifier_names, use_build_context_synchronously, avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
               decoration: const InputDecoration(
                 labelText: 'Username',
                 hintText: '',
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -82,7 +82,7 @@ class _LoginState extends State<Login> {
               decoration: const InputDecoration(
                 labelText: 'Password',
                 hintText: '',
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
               ),
               validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -91,22 +91,25 @@ class _LoginState extends State<Login> {
                   return null;
         },
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             ElevatedButton(
             onPressed: _submit, 
             style:ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF7dadc4),
-              padding:EdgeInsets.all(8.0),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
+              padding:EdgeInsets.all(16.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0))
             ) ,
-              child: Text('Login',style: TextStyle(color:Colors.white, fontWeight: FontWeight.w500, fontSize: 18))),
+              child: Container(
+                width: 250,
+                alignment: Alignment.center,
+                child: Text('Login',style: TextStyle(color:Colors.white,fontSize: 18, fontFamily: 'MontserratRegular')))),
               SizedBox(height: 20.0),
             GestureDetector(
               onTap: (){
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>Signup()));
               },
               child:
-              Text("Don't have an account yet? Click here to sign up.", style: TextStyle(color:Color(0xFF7dadc4), fontSize: 18),textAlign: TextAlign.center)
+              Text("Don't have an account yet? Click here to sign up.", style: TextStyle(color:Color(0xFF7dadc4), fontSize: 16),textAlign: TextAlign.center)
             )
           ]
         ),

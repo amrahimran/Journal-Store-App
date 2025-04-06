@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, use_build_context_synchronously
+// ignore_for_file: avoid_print, use_build_context_synchronously, avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:project/pages/login.dart';
@@ -55,7 +55,7 @@ class _SignupState extends State<Signup> {
             decoration: const InputDecoration(
               labelText: 'Username',
               hintText: '',
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
             ),
             validator:(value){
               if (value==null|| value.isEmpty){
@@ -71,7 +71,7 @@ class _SignupState extends State<Signup> {
             decoration: const InputDecoration(
               labelText: 'Email',
               hintText: '',
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
             ),
             validator: (value){
               if (value==null||value.isEmpty){
@@ -91,7 +91,7 @@ class _SignupState extends State<Signup> {
             decoration: const InputDecoration(
               labelText: 'Password',
               hintText: '',
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
             ),
             validator: (value){
               if(value==null||value.isEmpty){
@@ -110,7 +110,7 @@ class _SignupState extends State<Signup> {
             decoration: const InputDecoration(
               labelText: 'Confirm Password',
               hintText: '',
-              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4.0))),
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))),
             ),
             validator: (value){
               if(value==null||value.isEmpty){
@@ -122,15 +122,18 @@ class _SignupState extends State<Signup> {
               return null;
             },
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 50),
           ElevatedButton(
             onPressed: submitForm, 
             style:ElevatedButton.styleFrom(
               backgroundColor:Color(0xFF7dadc4),
-              padding:EdgeInsets.all(8.0),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0))
+              padding:EdgeInsets.all(16.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0))
             ) ,
-          child: Text('Register',style: TextStyle(color:Colors.white, fontWeight: FontWeight.w500, fontSize: 18)))
+          child: Container(
+            width: 250,
+            alignment: Alignment.center,
+            child: Text('Register',style: TextStyle(color:Colors.white, fontSize: 18, fontFamily: 'MontserratRegular'))))
         ]
       ),
       )

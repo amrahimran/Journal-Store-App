@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/homepage.dart';
 //import 'package:project/pages/splash_screen.dart';
-//import 'package:project/pages/homepage.dart';
+import 'package:project/pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       //home:Splashscreen(),
       home:HomePage()
+    
       
     );
 
