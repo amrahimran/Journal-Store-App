@@ -15,21 +15,23 @@ class AllProducts extends StatefulWidget {
 
 class _AllproductsState extends State<AllProducts> {
   final List<String> items=['Price', 'Low->High', 'High->Low' ];
-
   late String selectedOption;
+  late List<Product> fullProducts;
+
   @override
   void initState(){
     super.initState();
     selectedOption = items.first; 
+    fullProducts = allProducts.where((product) => product.id.startsWith('L')).toList();
   }
   @override
   
   
   Widget build(BuildContext context) {
-    List<Product> fullProducts=allProducts.where((product)=>product.id.startsWith('L')).toList();
+    // List<Product> fullProducts=allProducts.where((product)=>product.id.startsWith('L')).toList();
     
-    int rows = (fullProducts.length / 2).ceil(); // 2 columns
-    double gridHeight = rows * 250; // 250 is approximate row height
+    int rows = (fullProducts.length / 2).ceil(); 
+    double gridHeight = rows * 250; 
 
     return SafeArea(child: Scaffold(
       backgroundColor: Colors.white,
@@ -73,6 +75,15 @@ class _AllproductsState extends State<AllProducts> {
                 onChanged: (String? newValue){
                   setState(() {
                     selectedOption=newValue!;
+
+                    fullProducts=allProducts.where((product)=>product.id.startsWith('L')).toList();
+
+                    if(selectedOption=='Low->High'){
+                      fullProducts.sort((a,b)=>a.price.compareTo(b.price));
+                    }
+                    else if(selectedOption=='High->Low'){
+                      fullProducts.sort((a,b)=>b.price.compareTo(a.price));
+                    }
                   });
                   
                 },
