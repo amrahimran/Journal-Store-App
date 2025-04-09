@@ -1,0 +1,2 @@
+C:/Users/VICTUS/Documents/PERSONAL PROJECTS/Bookstore/project/android/app/.cxx/Debug/713b392s/x86/CMakeFiles/edit_cache.dir
+C:/Users/VICTUS/Documents/PERSONAL PROJECTS/Bookstore/project/android/app/.cxx/Debug/713b392s/x86/CMakeFiles/rebuild_cache.dir

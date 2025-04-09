@@ -33,6 +33,8 @@ class _AllproductsState extends State<AllProducts> {
     int rows = (fullProducts.length / 2).ceil(); 
     double gridHeight = rows * 250; 
 
+    final isLandscape=MediaQuery.of(context).orientation==Orientation.landscape;
+
     return SafeArea(child: Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomBar(),
@@ -113,7 +115,7 @@ class _AllproductsState extends State<AllProducts> {
                 physics: NeverScrollableScrollPhysics(), 
                 gridDelegate: 
               SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
+                crossAxisCount: isLandscape?3 : 1,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0), 
                 itemCount: fullProducts.length,

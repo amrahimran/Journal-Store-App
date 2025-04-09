@@ -59,128 +59,125 @@ class _HomepageState extends State<HomePage> {
      List<Product> otherProducts = allProducts.where((product)=>
      product.category.toLowerCase()=="other" && product.id.startsWith("L")).toList();
 
-    return 
-    SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: const CustomBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 195,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: heroslides.length,
-                  onPageChanged: (index) {
-                    currentpage = index;
-                  },
-                  itemBuilder: (context,index)
-                  {
-                    return Padding(padding: EdgeInsets.fromLTRB(10, 1, 10, 4),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(heroslides[index],
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      
-                      ),
-                    ),
-                    
-                    );
-                  }
-                  ),
-              ),
-              
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left:12.0),
-                child: Text("Vintage Collection",style: TextStyle(color: Color(0xFF7dadc4),fontSize: 21,fontFamily: 'MontserratMedium' ),),
-              ),
-          
-              SizedBox(
-                height:280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: vintageProducts.length,
-                  itemBuilder: (context, index){
-                    return ProductCard(product: vintageProducts[index]);
-                  }
-                  ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left:12.0),
-                child: Text("Cute Notebooks",style: TextStyle(color: Color(0xFF7dadc4),fontSize: 21,fontFamily: 'MontserratMedium' ),),
-              ),
-              SizedBox(
-                height:280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: cuteProducts.length,
-                  itemBuilder: (context, index){
-                    return ProductCard(product: cuteProducts[index]);
-                  }
-                  ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left:12.0),
-                child: Text("Journals",style: TextStyle(color: Color(0xFF7dadc4),fontSize: 21,fontFamily: 'MontserratMedium' ),),
-              ),
-              SizedBox(
-                height:280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: journalProducts.length,
-                  itemBuilder: (context, index){
-                    return ProductCard(product: journalProducts[index]);
-                  }
-                  ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left:12.0),
-                child: Text("Eastern Beauty",style: TextStyle(color: Color(0xFF7dadc4),fontSize: 21,fontFamily: 'MontserratMedium' ),),
-              ),
-          
-              SizedBox(
-                height:280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: easternProducts.length,
-                  itemBuilder: (context, index){
-                    return ProductCard(product: easternProducts[index]);
-                  }
-                  ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left:12.0),
-                child: Text("Other",style: TextStyle(color: Color(0xFF7dadc4),fontSize: 21,fontFamily: 'MontserratMedium' ),),
-              ),
-              SizedBox(
-                height:280,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: otherProducts.length,
-                  itemBuilder: (context, index){
-                    return ProductCard(product: otherProducts[index]);
-                  }
-                  ),
-              ),
-          
-            ],
-          ),
-        ),
-        bottomNavigationBar: Bottombar()
-      
-          
-        ),
-    );
-     
+     final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
-    //);
-  }
-}
+    return SafeArea(
+    child: Scaffold(
+      backgroundColor: Colors.white,
+      appBar: const CustomBar(),
+
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: isLandscape ? 250 : 195,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: heroslides.length,
+                    onPageChanged: (index) {
+                      currentpage = index;
+                    },
+                    itemBuilder: (context,index)
+                    {
+                      return Padding(
+                        padding: EdgeInsets.fromLTRB(10, 1, 10, 4),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            heroslides[index],
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
+                      );
+                    }
+                  ),
+                ),
+                SizedBox(height: isLandscape ? 30 : 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text("Vintage Collection", style: TextStyle(color: Color(0xFF7dadc4), fontSize: 21, fontFamily: 'MontserratMedium')),
+                ),
+                SizedBox(
+                  height: isLandscape ? 300 : 280,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: vintageProducts.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: vintageProducts[index]);
+                    },
+                  ),
+                ),
+                SizedBox(height: isLandscape ? 30 : 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text("Cute Notebooks", style: TextStyle(color: Color(0xFF7dadc4), fontSize: 21, fontFamily: 'MontserratMedium')),
+                ),
+                SizedBox(
+                  height: isLandscape ? 300 : 280,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: cuteProducts.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: cuteProducts[index]);
+                    },
+                  ),
+                ),
+                SizedBox(height: isLandscape ? 30 : 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text("Journals", style: TextStyle(color: Color(0xFF7dadc4), fontSize: 21, fontFamily: 'MontserratMedium')),
+                ),
+                SizedBox(
+                  height: isLandscape ? 300 : 280,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: journalProducts.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: journalProducts[index]);
+                    },
+                  ),
+                ),
+                SizedBox(height: isLandscape ? 30 : 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text("Eastern Beauty", style: TextStyle(color: Color(0xFF7dadc4), fontSize: 21, fontFamily: 'MontserratMedium')),
+                ),
+                SizedBox(
+                  height: isLandscape ? 300 : 280,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: easternProducts.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: easternProducts[index]);
+                    },
+                  ),
+                ),
+                SizedBox(height: isLandscape ? 30 : 20),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text("Other", style: TextStyle(color: Color(0xFF7dadc4), fontSize: 21, fontFamily: 'MontserratMedium')),
+                ),
+                SizedBox(
+                  height: isLandscape ? 300 : 280,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: otherProducts.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(product: otherProducts[index]);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      ),
+
+      bottomNavigationBar: Bottombar(),
+    ),
+  );
+  }}
