@@ -5,21 +5,29 @@ import 'package:project/components/bottombar.dart';
 import 'package:project/models/product.dart';
 import 'package:project/pages/cart.dart'; 
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   final String productId; 
   // Accept the product id as a parameter.
 
   const DetailsPage({super.key, required this.productId});
 
   @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  late String currentId;
+  late Product selectedProduct;
+
+  @override
   Widget build(BuildContext context) {
-    Product selectedProduct = getProductById(productId); //function to fetch the product based on id.
+    Product selectedProduct = getProductById(widget.productId); //function to fetch the product based on id.
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white, 
-        elevation: 0, //  Remove shadow
+        elevation: 0, //  to remove shadow.
         title: Padding(
           padding: const EdgeInsets.fromLTRB(25.0, 20.0, 8.0, 16.0),
           child: Text(
@@ -35,7 +43,7 @@ class DetailsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: IconButton(
-              icon: Icon(Icons.shopping_cart, color: Color(0xFF7dadc4)), // Match icon color
+              icon: Icon(Icons.shopping_cart, color: Color(0xFF7dadc4)), 
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
               },
@@ -51,15 +59,19 @@ class DetailsPage extends StatelessWidget {
             children: [
               Image.asset(selectedProduct.image), 
               SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  selectedProduct.name,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      selectedProduct.name,
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(width: 60),
+                  Icon(Icons.favorite_border),
+                ],
               ),
-              // SizedBox(height: 10),
-              // Text("Rs. ${selectedProduct.price}"),
               SizedBox(height: 12),
               Text(selectedProduct.description), 
               SizedBox(height: 25),
@@ -160,13 +172,13 @@ class DetailsPage extends StatelessWidget {
                       SizedBox(height:26),
                       Row(children: [
                         Text('Rs. ${selectedProduct.price}' , style: TextStyle(fontFamily: 'MontserratSemiBold', fontSize: 18)),
-                        SizedBox(width:25),
+                        SizedBox(width:35),
                         ElevatedButton(
                           onPressed: (){}, 
                           style:ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Color(0xFF7dadc4),
-                            padding: EdgeInsets.fromLTRB(32, 22, 32, 22),
+                            padding: EdgeInsets.fromLTRB(25, 22, 25, 22),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25)
                             )
@@ -182,7 +194,6 @@ class DetailsPage extends StatelessWidget {
       bottomNavigationBar: Bottombar(),
     );
   }
-
 
   // Mock function to retrieve product by ID (replace with actual logic to get product)
   Product getProductById(String productId) {
