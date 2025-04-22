@@ -1,22 +1,50 @@
-// ignore_for_file: avoid_print, prefer_final_fields, unused_element, unused_import, non_constant_identifier_names, use_build_context_synchronously, avoid_unnecessary_containers, sized_box_for_whitespace
+// ignore_for_file: avoid_print, prefer_final_fields, unused_element, unused_import, non_constant_identifier_names, use_build_context_synchronously, avoid_unnecessary_containers, sized_box_for_whitespace, annotate_overrides
 
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/signup.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
+  
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+    bool isLoggedIn = false;
     final _formKey = GlobalKey<FormState>();
     final TextEditingController _usernameController=TextEditingController();
     final TextEditingController 
     _passwordController=TextEditingController();
+
+      // Function to check if the user is already logged in
+    Future<void> _checkLoginStatus() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool loggedIn = prefs.getBool('isLoggedIn') ?? false; // Get login state
+      if (loggedIn) {
+        // If the user is logged in, navigate directly to HomePage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      }
+    }
+
+    @override
+    void initState(){
+      super.initState();
+      _checkLoginStatus();
+    }
+
+    // Function to save login state in SharedPreferences
+    Future<void> _saveLoginState() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true); // Save login state as true
+    }
 
     void _submit() {
   FocusScope.of(context).unfocus(); // Dismiss keyboard
@@ -33,6 +61,7 @@ class _LoginState extends State<Login> {
           customAsset:'assets/images/login.webp'
         );
       Future.delayed(const Duration(seconds: 2),(){
+        _saveLoginState(); // Save login state when login is successful
           //Navigator.pop(context);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
       
