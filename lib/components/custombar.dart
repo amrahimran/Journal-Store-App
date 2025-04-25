@@ -29,7 +29,7 @@ class CustomBar extends StatelessWidget implements PreferredSizeWidget {
               child: IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed:(){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>CartPage()));
               }),
             )
               

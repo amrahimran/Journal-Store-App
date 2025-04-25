@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/components/bottombar.dart';
 import 'package:project/components/custombar.dart';
-import 'package:project/pages/splash_screen.dart'; 
+import 'package:project/pages/splash_screen.dart';
+import 'package:project/pages/wishlist.dart'; 
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -144,15 +145,20 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text(
-                          "Favorites",
-                          style: TextStyle(fontSize: 16, fontFamily: 'MontserratRegular'),
-                        ),
-                        const SizedBox(width: 10),
-                        const Icon(Icons.favorite, color: Color(0xFF7dadc4), size: 24),
-                      ],
+                    GestureDetector(
+                      onTap:(){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>WishlistPage()));
+                      },
+                      child: Row(
+                        children: [
+                          const Text(
+                            "Favorites",
+                            style: TextStyle(fontSize: 16, fontFamily: 'MontserratRegular'),
+                          ),
+                          const SizedBox(width: 10),
+                          const Icon(Icons.favorite, color: Color(0xFF7dadc4), size: 24),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 30),
                     Row(
