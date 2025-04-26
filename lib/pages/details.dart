@@ -22,6 +22,40 @@ class _DetailsPageState extends State<DetailsPage> {
   bool isFavorite = false;
   int selectedQuantity = 1;
 
+  void updateProductSize(String newSize) {
+    String updatedId = selectedProduct.id;
+    
+    if (newSize == 'B5' && updatedId.startsWith('L')) {
+      updatedId = 'M${updatedId.substring(1)}';
+    } else if (newSize == 'A5' && updatedId.startsWith('M')) {
+      updatedId = 'L${updatedId.substring(1)}';
+    }
+
+    setState(() {
+      selectedProduct = getProductById(updatedId);
+      isFavorite = wishlist.contains(selectedProduct);
+    });
+  }
+
+  void updateProductByColor(String newColorCode) {
+  final parts = selectedProduct.id.split('C');
+  if (parts.length == 2) {
+    final newId = '${parts[0]}C${newColorCode.toUpperCase()}';
+
+    try {
+      final newProduct = getProductById(newId);
+      setState(() {
+        selectedProduct = newProduct;
+        isFavorite = wishlist.contains(newProduct);
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Product not available'))
+      );
+    }
+  }
+}
+
   @override
   void initState() {
     super.initState();
@@ -42,13 +76,13 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    selectedProduct = getProductById(widget.productId); //function to fetch the product based on id.
+    //selectedProduct = getProductById(widget.productId); //function to fetch the product based on id.
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white, 
-        elevation: 0, //  to remove shadow.
+        elevation: 0, 
         title: Padding(
           padding: const EdgeInsets.fromLTRB(25.0, 20.0, 8.0, 16.0),
           child: Text(
@@ -101,11 +135,14 @@ class _DetailsPageState extends State<DetailsPage> {
               SizedBox(height: 12),
               Text(selectedProduct.description), 
               SizedBox(height: 25),
-              Row(
+              if (selectedProduct.category!='other')...[
+                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {}, 
+                    onPressed: () {
+                      updateProductSize('A5');
+                    }, 
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7dadc4),
                       foregroundColor: Colors.white,
@@ -118,7 +155,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                   SizedBox(width: 36.0),
                   ElevatedButton(
-                    onPressed: () {}, 
+                    onPressed: () {
+                      updateProductSize('B5');
+                    }, 
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7dadc4),
                       foregroundColor: Colors.white,
@@ -131,59 +170,75 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ],
               ),
+              ],
+              
               SizedBox(height: 25),
+              if(selectedProduct.id.contains('C'))...[
               Row(
                 children: [
                   Text('Colors :' , style: TextStyle(fontFamily: 'MontserratSemiBold')),
                   SizedBox(height: 12),
-                  Padding(
+                    Padding(
                     padding: const EdgeInsets.fromLTRB(40, 1, 1, 1),
                     child: Row(
                       children: [
-                        Container(
-                          width: 30,
-                          height: 30,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.black, 
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                        GestureDetector(
+                          onTap: ()=> updateProductByColor('BLACK'),
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black, 
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 30,
-                          height: 30,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFFACB7), 
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                        GestureDetector(
+                          onTap: ()=> updateProductByColor('PINK'),
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFACB7), 
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 30,
-                          height: 30,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF7dadc4), 
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                        GestureDetector(
+                          onTap: ()=> updateProductByColor('BLUE'),
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF7dadc4), 
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                            ),
                           ),
                         ),
-                        Container(
-                          width: 30,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 92, 206, 120), 
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                        GestureDetector(
+                          onTap: ()=> updateProductByColor('GREEN'),
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 92, 206, 120), 
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey.shade300, width: 1.5),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
+                  ],
               ),
+              ],
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerLeft,
