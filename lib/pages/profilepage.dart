@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
     final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: const CustomBar(), 
       body: SingleChildScrollView(
         child: Padding(

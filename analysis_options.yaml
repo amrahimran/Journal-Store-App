@@ -11,6 +11,7 @@ analyzer:
   errors:
     unused_field: ignore
     prefer_typing_uninitialized_variables: ignore
+    prefer_const_constructors_in_immutables: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

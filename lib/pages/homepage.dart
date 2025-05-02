@@ -63,7 +63,7 @@ class _HomepageState extends State<HomePage> {
 
     return SafeArea(
     child: Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: const CustomBar(),
 
       body: LayoutBuilder(

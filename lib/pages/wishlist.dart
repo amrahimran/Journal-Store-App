@@ -21,7 +21,7 @@ class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: CustomBar(),
       body: wishlist.isEmpty
           ? Center(child: 
